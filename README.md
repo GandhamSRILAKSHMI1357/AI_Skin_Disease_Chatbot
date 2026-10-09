@@ -1,62 +1,84 @@
 # AI Skin Disease Chatbot
 
-## Description
-An AI-powered chatbot that answers questions about common skin diseases using Google's Gemini API and a custom knowledge base.
+A Streamlit demo that answers general questions about common skin conditions using a small local text knowledge base and Google's Gemini API.
+
+> **Important:** This is an educational prototype, not a medical device. It cannot diagnose conditions or replace a licensed healthcare professional. Do not use it for emergencies.
 
 ## Features
-- AI-powered responses
-- Streamlit web interface
-- Knowledge-base based answers
-- Supports Acne, Eczema, Psoriasis, Vitiligo, and Fungal Infection
 
-## Technologies Used
-- Python
-- Streamlit
-- Google Gemini API
-- python-dotenv
+- Text questions about topics represented in the `knowledge/` folder
+- Grounded answers that are instructed to use the supplied knowledge base
+- Clear configuration errors when the API key or knowledge files are missing
+- Supports local `.env` configuration and hosted Streamlit Secrets
 
-## Project Structure
+## Requirements
 
-```
-AI_Skin_Disease_Chatbot/
-│── app.py
-│── requirements.txt
-│── .gitignore
-│── README.md
-│── knowledge/
-│   ├── acne.txt
-│   ├── eczema.txt
-│   ├── psoriasis.txt
-│   ├── vitiligo.txt
-│   └── fungal_infection.txt
-```
+- Python 3.10 or later
+- A Gemini API key from [Google AI Studio](https://aistudio.google.com/apikey)
 
-## Installation
+## Run locally (Windows PowerShell)
 
-```bash
-pip install -r requirements.txt
-```
+1. Clone the repository and enter its folder:
 
-Create a `.env` file:
+   ```powershell
+   git clone https://github.com/GandhamSRILAKSHMI1357/AI_Skin_Disease_Chatbot.git
+   cd AI_Skin_Disease_Chatbot
+   ```
+
+2. Create and activate a virtual environment:
+
+   ```powershell
+   py -3.12 -m venv .venv
+   .\.venv\Scripts\Activate.ps1
+   ```
+
+3. Install the small set of packages this app actually uses:
+
+   ```powershell
+   python -m pip install --upgrade pip
+   pip install -r requirements.txt
+   ```
+
+4. Create a file named `.env` in the project root containing:
+
+   ```text
+   GOOGLE_API_KEY=your_gemini_api_key
+   ```
+
+   Do not commit your real API key to GitHub.
+
+5. Start the app:
+
+   ```powershell
+   streamlit run app.py
+   ```
+
+## Deploy on Streamlit Community Cloud
+
+1. Open [Streamlit Community Cloud](https://share.streamlit.io/) and sign in with GitHub.
+2. Choose **Create app**, then select this repository, the `main` branch, and `app.py` as the entrypoint.
+3. Open **Advanced settings** and choose Python 3.12.
+4. In the **Secrets** field, add:
+
+   ```toml
+   GOOGLE_API_KEY = "your_gemini_api_key"
+   ```
+
+5. Click **Deploy** and inspect the app's logs if startup fails.
+
+The hosted app uses the repository's `requirements.txt` to install its Python dependencies. The API key belongs in hosting Secrets, not in the repository.
+
+## Project structure
 
 ```text
-GOOGLE_API_KEY=YOUR_API_KEY
+AI_Skin_Disease_Chatbot/
+├── app.py
+├── requirements.txt
+├── README.md
+└── knowledge/
+    ├── acne.txt
+    ├── eczema.txt
+    ├── psoriasis.txt
+    ├── vitiligo.txt
+    └── fungal_infection.txt
 ```
-
-Run:
-
-```bash
-python -m streamlit run app.py
-```
-
-## Example Questions
-
-- What is acne?
-- What is eczema?
-- What is psoriasis?
-- What is vitiligo?
-- What is fungal infection?
-
-Questions outside the knowledge base will return:
-
-> I don't have enough information in my knowledge base to answer that.
