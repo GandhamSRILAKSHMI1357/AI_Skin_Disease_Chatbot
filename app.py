@@ -10,7 +10,7 @@ KNOWLEDGE_DIR = BASE_DIR / "knowledge"
 # Local development can use a .env file. On hosted Streamlit, add the key
 # under App settings -> Secrets instead; never commit a real key to GitHub.
 load_dotenv(BASE_DIR / ".env")
-MODEL_NAME = os.getenv("GEMINI_MODEL", "gemini-flash-latest")
+MODEL_NAME = os.getenv("GEMINI_MODEL", "gemini-3.8-flash")
 
 
 def get_api_key() -> str | None:
@@ -90,8 +90,7 @@ QUESTION:
                 answer = (response.text or "").strip()
             except Exception as exc:
                 st.error(
-                    f"The AI request failed ({type(exc).__name__}). Check that your "
-                    "Gemini API key is valid and that the model is available."
+                    f"Gemini API request failed ({type(exc).__name__}): {str(exc)[:500]}"
                 )
             else:
                 if answer:
