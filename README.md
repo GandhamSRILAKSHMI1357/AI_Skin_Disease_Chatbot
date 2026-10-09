@@ -56,7 +56,7 @@ A Streamlit demo that answers general questions about common skin conditions usi
 ## Deploy on Streamlit Community Cloud
 
 1. Open [Streamlit Community Cloud](https://share.streamlit.io/) and sign in with GitHub.
-2. Choose **Create app**, then select this repository, the `main` branch, and `app.py` as the entrypoint.
+2. Choose **Create app**, then select this repository, the `fix/streamlit-deployment-20261009` branch, and `app.py` as the entrypoint for the test deployment. After pull request [#1](https://github.com/GandhamSRILAKSHMI1357/AI_Skin_Disease_Chatbot/pull/1) is reviewed and merged, you can switch the app to `main`.
 3. Open **Advanced settings** and choose Python 3.12.
 4. In the **Secrets** field, add:
 
