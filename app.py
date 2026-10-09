@@ -7,11 +7,10 @@ from google import genai
 
 BASE_DIR = Path(__file__).resolve().parent
 KNOWLEDGE_DIR = BASE_DIR / "knowledge"
-MODEL_NAME = os.getenv("GEMINI_MODEL", "gemini-flash-latest")
-
 # Local development can use a .env file. On hosted Streamlit, add the key
 # under App settings -> Secrets instead; never commit a real key to GitHub.
 load_dotenv(BASE_DIR / ".env")
+MODEL_NAME = os.getenv("GEMINI_MODEL", "gemini-flash-latest")
 
 
 def get_api_key() -> str | None:
